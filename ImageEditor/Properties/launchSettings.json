@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ImageEditor": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\Moon\\Documents\\Education\\CampusMolndal\\C#\\Uppgift1-ImageEditor\\ImageEditor\\circle.png",
+      "workingDirectory": "C:\\Users\\Moon\\Documents\\Education\\CampusMolndal\\C#\\Uppgift1-ImageEditor\\ImageEditor"
+    }
+  }
+}
