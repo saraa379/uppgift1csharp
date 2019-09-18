@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace ImageEditor
 {
@@ -6,8 +7,7 @@ namespace ImageEditor
     {
         static void Main(string[] args)
         {
-            // Create image.
-            //Image newImage = Image.FromFile(args[0]);
+            
             Console.WriteLine("Image Editor is starting");
             if (args.Length == 0)
             {
@@ -15,9 +15,14 @@ namespace ImageEditor
             }
             else
             {
-                string argument = args[0];
-                Console.WriteLine("Argument is passed");
+                string imageLink = args[0];
+                Console.WriteLine("Argument is passed: " + imageLink);
+                ImgEditor.EditImage(imageLink);
+                
+
             }
+            
         }
     }
 }
+
