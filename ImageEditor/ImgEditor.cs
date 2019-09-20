@@ -24,7 +24,7 @@ namespace ImageEditor
                 Console.WriteLine("Path of the image: " + imagePath);
 
                 Bitmap bimage = new Bitmap(imageLink);
-                MakeNegative(imageLink, imageName, imagePath);
+                ConvertImage(imageLink, imageName, imagePath);
 
             }
             catch (ArgumentException)
@@ -38,11 +38,15 @@ namespace ImageEditor
         }
 
         //makes image negative
-        public static void MakeNegative(string link, string imageName, string imagePath)
+        public static void ConvertImage(string link, string imageName, string imagePath)
         {
-            Console.WriteLine("This is negative method");
-
             Bitmap bimage = new Bitmap(link, true);
+            //netative result shall be saved here
+            Bitmap biNegative = new Bitmap(link, true);
+            //greyacle result shall be saved here
+            Bitmap biGrey = new Bitmap(link, true);
+            //blur result shall be saved here
+            Bitmap biBlur = new Bitmap(link, true);
 
             //get image dimension
             int width = bimage.Width;
@@ -62,17 +66,20 @@ namespace ImageEditor
                     int g = pixel.G;
                     int b = pixel.B;
 
-                    //find negative value
+                    /*Negative conversion*/
                     r = 255 - r;
                     g = 255 - g;
                     b = 255 - b;
+                    biNegative.SetPixel(x, y, Color.FromArgb(a, r, g, b));     //img.SetPixel(x, y, newColor);
 
-                    //set new argb value in pixel
-                    bimage.SetPixel(x, y, Color.FromArgb(a, r, g, b));     //img.SetPixel(x, y, newColor);
+                    /*Greyscale conversion*/
+                    int averageValue = (r + g + b) / 3;
+                    biGrey.SetPixel(x, y, Color.FromArgb(a, averageValue, averageValue, averageValue));
                 }
             }//end of for
 
-            SaveImage(bimage, "_negative", imageName, imagePath);
+            SaveImage(biNegative, "_negative", imageName, imagePath);
+            SaveImage(biGrey, "_greyscale", imageName, imagePath);
         }
 
 
@@ -89,26 +96,26 @@ namespace ImageEditor
                     //bimage.Save(link, System.Drawing.Imaging.ImageFormat.Png);
                     //bimage.Save("c:\\temp\\test.bmp");
                     ImageFormat imageFormat = bimage.RawFormat;
-                    string imageName;
+                    //string imageName;
                     string newImagePath;
                    
                     if (bimage.RawFormat.Equals(System.Drawing.Imaging.ImageFormat.Jpeg)) {
                         newImagePath = path + "\\" + name + conversionType + ".jpg";
-                        imageName = name + conversionType + ".jpg";
+                        //imageName = name + conversionType + ".jpg";
                         Console.WriteLine("New image path is: " + newImagePath);
                     }
                     else {
                         newImagePath = path + "\\" + name + conversionType + ".png";
-                        imageName = name + conversionType + ".png";
+                        //imageName = name + conversionType + ".png";
                         Console.WriteLine("New image path is: " + newImagePath);
                     }
                     
-                    bimage.Save(imageName, ImageFormat.Png);
+                    bimage.Save(newImagePath, ImageFormat.Png);
 
                 }
-                catch (Exception)
+                catch (ArgumentNullException)
                 {
-                    Console.Error.WriteLine("There was a problem saving the negative image");
+                    Console.Error.WriteLine("Either file path is wrong or there was no image in the given path");
                 }//end of try catch
             }
             else

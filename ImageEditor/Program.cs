@@ -11,7 +11,9 @@ namespace ImageEditor
             Console.WriteLine("Image Editor is starting");
             if (args.Length == 0)
             {
-                Console.WriteLine("No argument is passed");
+                Console.WriteLine("Please enter a image path");
+                string path = Console.ReadLine();
+                ImgEditor.EditImage(path);
             }
             else
             {

@@ -2,7 +2,7 @@
   "profiles": {
     "ImageEditor": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Users\\Moon\\Documents\\Education\\CampusMolndal\\C#\\Uppgift1-ImageEditor\\koya.jpg",
+      "commandLineArgs": "C:\\Users\\Moon\\Documents\\Education\\CampusMolndal\\C#\\Uppgift1-ImageEditor\\ImageEditor\\koya.jpg",
       "workingDirectory": "C:\\Users\\Moon\\Documents\\Education\\CampusMolndal\\C#\\Uppgift1-ImageEditor\\ImageEditor"
     }
   }
